@@ -48,3 +48,32 @@ long candies(int n, vector<int> arr)
     return count;
 }
 
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string n_temp;
+    getline(cin, n_temp);
+
+    int n = stoi(ltrim(rtrim(n_temp)));
+
+    vector<int> arr(n);
+
+    for (int i = 0; i < n; i++) {
+        string arr_item_temp;
+        getline(cin, arr_item_temp);
+
+        int arr_item = stoi(ltrim(rtrim(arr_item_temp)));
+
+        arr[i] = arr_item;
+    }
+
+    long result = candies(n, arr);
+
+    fout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
