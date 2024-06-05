@@ -16,35 +16,27 @@ string rtrim(const string &);
 
 long candies(int n, vector<int> arr)
 {
-    vector<int> temp(n);
-    int num = 1;
+    vector<int> candies(n, 1);
 
     for (int i = 1; i < n; ++i)
     {
-        if (arr[i] > arr[i-1])
-            num++;
-        else if (arr[i] <= arr[i-1])
-             num = 1;
-        
-        temp[i] = num;
+        if (arr[i] > arr[i - 1])
+        {
+            candies[i] = candies[i - 1] + 1;
+        }
     }
 
-    num = 1;
-    long count = temp[n-1];
-    
-    for (int i = n-2; i >= 0; --i)
+    for (int i = n - 2; i >= 0; --i)
     {
-        if (arr[i] > arr[i+1])
-            num++;
-        else if (arr[i] <= arr[i+1])
-            num = 1;
-        
-        if( num > temp[i])
-            temp[i] = num;
+        if (arr[i] > arr[i + 1])
+        {
+            candies[i] = max(candies[i], candies[i + 1] + 1);
+        }
+    }
 
-        count += temp[i];
-    }    
-    
+    long count = std::accumulate(candies.begin(), candies.end(), 0L);
+    //long count = std::reduce(candies.begin(), candies.end(), 0L, std::plus<>());
+
     return count;
 }
 
@@ -77,7 +69,6 @@ int main()
 
     return 0;
 }
-
 
 string ltrim(const string &str) {
     string s(str);
