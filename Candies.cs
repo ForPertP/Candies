@@ -14,4 +14,19 @@ using System;
 
 class Result
 {
+
+    /*
+     * Complete the 'candies' function below.
+     *
+     * The function is expected to return a LONG_INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. INTEGER_ARRAY arr
+     */
+
+    public static long candies(int n, List<int> arr)
+    {
+
+    }
+
 }
