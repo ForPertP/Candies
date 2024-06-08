@@ -26,11 +26,29 @@ class Result
 
     public static long candies(int n, List<int> arr)
     {
+        List<int> candies = Enumerable.Repeat(1, n).ToList();
 
+        for (int i = 1; i < n; ++i)
+        {
+            if (arr[i] > arr[i - 1])
+            {
+                candies[i] = candies[i - 1] + 1;
+            }
+        }
+
+        for (int i = n - 2; i >= 0; --i)
+        {
+            if (arr[i] > arr[i + 1])
+            {
+                candies[i] = Math.Max(candies[i], candies[i + 1] + 1);
+            }
+        }
+
+        long count = candies.Sum(c => (long)c);
+
+        return count;
     }
-
 }
-
 
 
 class Solution
