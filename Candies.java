@@ -22,11 +22,26 @@ class Result {
      */
 
     public static long candies(int n, List<Integer> arr) {
+        List<Integer> candies = new ArrayList<>(Collections.nCopies(n, 1));
+
+        for (int i = 1; i < n; ++i) {
+            if (arr.get(i) > arr.get(i - 1)) {
+                candies.set(i, candies.get(i - 1) + 1);
+            }
+        }
+
+        for (int i = n - 2; i >= 0; --i) {
+            if (arr.get(i) > arr.get(i + 1)) {
+                candies.set(i, Math.max(candies.get(i), candies.get(i + 1) + 1));
+            }
+        }
+
+        long count = candies.stream().mapToLong(Integer::longValue).sum();
+
+        return count;
     }
 
 }
-
-
 
 public class Solution {
     public static void main(String[] args) throws IOException {
